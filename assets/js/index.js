@@ -21,21 +21,22 @@ class RangeValidator {
     if (from >= to || to <= from){
       throw RangeError('Not in the range');
     }
-debugger;
+// debugger;
     this.from = from;
     this.to = to;
-    this.validate = 0;
   }
   get range(){
-    if (this.from < this.to)
     return Array(this.to - this.from + 1).fill().map((_, i) => this.from + i)
   }
-  set validate(number){
+  validate(number){
     if (number < this.from || number > this.to){
-    throw RangeError('Not in range');
+    throw RangeError('Not in the range');
   }
-    return number;
+    if (typeof number !== 'number'|| isNaN(number)){
+      throw TypeError('Must be a number');
   }
+  return number;
   }
+}
 
-const obj1 = new RangeValidator (0, 5);
+const obj1 = new RangeValidator (5, 50);
